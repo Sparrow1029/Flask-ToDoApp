@@ -1,0 +1,33 @@
+{#{% block app_content %}#}
+{% import 'bootstrap/wtf.html' as wtf %}
+		<!-- Modal -->
+		<div class="modal fade" id="taskModal" role="dialog" aria-labelledby="modalCenterTile" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div>
+							<h4 class="modal-title" style="float: left;" id="exampleModalCenterTitle">Add New Task</h5>
+							<button type="button" style="float: right;" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						</div>
+					</div>
+					<div class="modal-body">
+            <form id="taskForm" action="" method="post" name="new_task" role="form">
+              {{ form.hidden_tag()  }}
+							<div class="form-group">
+                {{ wtf.form_field(form.task_body) }}<br>
+                {{ wtf.form_field(form.dt) }}
+							</div>	
+							<div class="modal-footer">
+								<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+								<input type="submit" name="save" id="saveTask" class="btn btn-primary" value="Save">
+                
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end Modal -->
+  {#{% endblock %}#}

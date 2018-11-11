@@ -1,0 +1,98 @@
+/* some styles, add/update/delete as you want */
+
+html, body {
+	/*text-align: center;*/
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+/*
+nav, .side-nav{
+	padding: 10px;
+}
+*/
+.tasks {
+  float: right; 
+  width: 50%;
+	margin: 50px 30px;
+}
+
+.task-tile {
+  background: #9f9;
+  border-radius: 25px;
+  margin: auto;
+	text-align: center;
+}
+
+th {
+  border: 1px solid white;
+  background: #40ff00;
+  margin: 10px;
+}
+td {
+  background: #9fc;
+	border: 1px dashed white;
+	padding: 25px;
+}
+
+.side-nav {
+  min-width: 80px;
+	max-width: 250px;
+  background: #9f9;
+  height: 100%;
+}
+
+title {
+	color: #fff;
+}
+nav.navbar.navbar-default {
+	color: #9999ff;
+	background-color: #9999ff;
+	border-color: #6666ff;
+}
+
+ul.nav.navbar-nav li:hover {
+	background-color: #4d4dff;
+	color: #fff;
+}
+
+.navbar-default .navbar-brand {
+	font-family: 'Anton', sans-serif;
+	font-size: 2em;
+	color: #fff;
+	
+}
+
+ul.nav.navbar-nav a {
+	color: #fff;
+}
+
+ul.nav.navbar-nav a:hover {
+	color: #fff;
+}
+
+div.card {
+  width: 18rem;
+  background-color: #ffff80;
+  max-width: 275px;
+  min-width: 250px;
+  max-height: 300px;
+  min-height: 280px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);  
+  text-align: center;
+}
+
+div.card.card-complete {
+  background-color: #aaff80;
+}
+
+div.card-body {
+  padding: 5px;
+}
+
+
+#task-window {
+	padding: 10px;
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+
+<!-- some boilerplate, delete or modify as you wish -->
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+<div class="side-nav" style="max-width: 25%; float: left;">
+  <nav style="margin: 25px 30px">
+    <h2>SIDE NAV</h2>
+      <button type="button" id="new-task">
+        <p>New Task</p>
+      </button>
+  </nav>
+
+  <hr>
+</div>
+<div class="tasks">
+	<h1 style="text-align: center;">Current TODO List:</h1>
+  <table>
+		<tr>
+			<th>No.</th>
+			<th>Task</th>
+      <th></th>
+		</tr>
+		{% for task in tasks %}
+      {% include 'task_tile.html' %}
+		{% endfor %}
+	</table>
+</div>

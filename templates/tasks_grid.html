@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+	<div class="container" id="task-window">
+		<div class="row">
+		<!-- 
+		Set counter for task "to-do" tile numbering 
+		REF for this neat hack: 
+https://stackoverflow.com/questions/7537439/how-to-increment-a-variable-on-a-for-loop-in-jinja-template
+		-->
+			{% set count = [1] %}
+			{% for task in tasks %}
+			<div class="col-sm-3">
+				{% include 'task_tile.html' %}
+			</div>
+			{% if count.append(count.pop() +1) %}{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

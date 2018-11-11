@@ -1,0 +1,82 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+	{{super()}}
+	<link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}"/>
+	<link href="https://fonts.googleapis.com/css?family=Anton&effect=anaglyph" rel="stylesheet"/> 
+{% endblock %}
+
+{% block head %}
+  {{super()}}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
+	//Trying to keep modal window open if there are form errors
+  $('#saveTask').click(function(event) {
+    event.preventDefault();
+    $.post(url, data=$('#taskForm').serialize(), function(data) {
+      if (data.status == 'ok') {
+        $('#taskModal').modal('hide');
+        location.reload();
+      }
+      else {
+        $('#taskModal .modal-content').html(data);
+      }
+    });
+  });
+
+	</script>
+  <script type="text/javascript">
+    function confirmDelete(form) {
+      if (window.confirm("Are you sure?")) {
+        form.submit();
+      }
+      else {
+        alert("Not deleted");
+        return false;
+      }
+    };
+  </script>
+{% endblock %}
+
+{% block title %}To-do WebApp{% endblock %}
+
+{% block navbar %}
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+					<button class="navbar-toggle collapsed" data-toggle="collapse" data-target='#bs-example-navbar-collapse-1' aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>	
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand font-effect-anaglyph" href="{{ url_for('index') }}">To-do List</a>
+			</div>
+			<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+          <li><a href="#" data-toggle="modal" data-target="#taskModal">Add new task</a></li>
+          <li><a href="{{ url_for('completed_tasks') }}">See completed tasks</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+          <li><a href="{{ url_for('clear_tasks') }}">Clear completed</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+{% endblock %}
+
+{% block content %}
+  
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+	<!-- app template block -->
+	<div class="container">
+    {% include 'task_form.html' %}
+		{% block app_content %}{% endblock %}
+	</div>
+{% endblock %}

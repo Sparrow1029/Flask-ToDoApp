@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<div class="card {% if task.completed == True %} card-complete {% else %}{% endif %}">
+	<div class="card-body">
+    <form method="post">
+      <button style="position:absolute;top:25px;right:15px;" type="submit" name="delete" value="{{ task.id }}" class="close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </form>
+		<tr>
+      <td>
+      {% if task.completed == False or 0 %}
+				<h4 style="padding: 4px; margin-left: 5px; float: left;">#{{ count[0] }}</h4>
+				<p style="margin: 10px;">Due: {{ task.due_date.strftime('%Y-%m-%d') }}</p>
+      {% else %}
+        <img src="static/check-mark.png" style="max-width: 75px;"/>
+      {% endif %}
+      </td>
+			<td>
+				<!-- <h3>Created:</h3><p style="font-size: 1em;">{{ task.timestamp }}</p><br><br> -->
+			<h3>{{ task.body  }}</h3><br>
+			</td>
+      <td>
+      {% if task.completed == 0 or False %}
+        <form action="" method="post">
+          <button type="submit" name="complete" class="btn btn-primary" value="{{ task.id }}">Completed!</button>
+        </form>
+      {% else %}
+        <p><em>Completed on: </em>{{ task.completed_date.strftime('%Y-%m-%d') }}</p>
+      {% endif %}
+      </td>
+		</tr>		
+	</div>
+</div>

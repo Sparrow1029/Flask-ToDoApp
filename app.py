@@ -1,11 +1,12 @@
 import os
-from datetime import datetime
+from datetime import datetime, date
 
 from flask import Flask, render_template, flash, redirect, url_for, request, jsonify
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField, SubmitField
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired
+from wtforms_components import DateRange
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -30,7 +31,12 @@ from models import Task
 
 class TaskForm(FlaskForm):
     task_body = TextAreaField('Enter to-do task', validators=[DataRequired()])
-    dt = DateField('Due Date:', format='%Y-%m-%d', validators=[DataRequired()])
+    dt = DateField('Due Date:',
+                   format='%Y-%m-%d',
+                   validators=[DataRequired(),
+                   DateRange(min=date.today())]
+                  )
+
     submit = SubmitField('Save')
 
 

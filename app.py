@@ -56,7 +56,7 @@ def index():
                 new_task = Task(body=body, due_date=due_date)
                 db.session.add(new_task)
                 db.session.commit()
-                flash("New task added!", 'info')
+                flash("New task added!", category='success')
                 return redirect(url_for('index'))
 
         elif 'complete' in request.form:
@@ -73,11 +73,11 @@ def index():
             task_to_delete = Task.query.filter_by(id=task_id).first()
             db.session.delete(task_to_delete)
             db.session.commit()
-            flash('Task deleted!', 'info')
+            flash('Task deleted!', category='success')
             return redirect(url_for('index'))
 
     if not tasks:
-        flash('Add some tasks!')
+        flash('Add some tasks!', category='warning')
 
     return render_template('tasks_grid.html', tasks=tasks, form=form)
 
@@ -97,7 +97,7 @@ def completed_tasks():
                 new_task = Task(body=body, due_date=due_date)
                 db.session.add(new_task)
                 db.session.commit()
-                flash("New task added!")
+                flash("New task added!", category='success')
                 return redirect(url_for('index'))
 
         elif 'clear' in request.form:
@@ -108,13 +108,13 @@ def completed_tasks():
             task_to_delete = Task.query.filter_by(id=task_id).first()
             db.session.delete(task_to_delete)
             db.session.commit()
-            flash('Task deleted!')
+            flash('Task deleted!', category='success')
             return redirect(url_for('completed_tasks'))
 
     if tasks:
         return render_template('tasks_grid.html', tasks=tasks, form=form)
     else:
-        flash('No completed tasks to show.')
+        flash('No completed tasks to show.', category='danger')
 
     return redirect(url_for('index'))
 

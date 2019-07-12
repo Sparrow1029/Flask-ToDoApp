@@ -23,7 +23,7 @@
       <td>
       {% if task.completed == 0 or False %}
         <form action="" method="post">
-          <button type="submit" name="complete" class="btn btn-primary" value="{{ task.id }}">Completed!</button>
+          <button type="submit" name="complete" class="btn btn-primary" value="{{ task.id }}">Complete?</button>
         </form>
       {% else %}
         <p><em>Completed on: </em>{{ task.completed_date.strftime('%Y-%m-%d') }}</p>
